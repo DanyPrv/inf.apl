@@ -20,11 +20,13 @@ public class Employee {
         productStocks = stock;
         this.employeeType = employeeType;
         this.Name = name;
-        this.cashRegister=cashRegister;
+        this.cashRegister = cashRegister;
     }
-    public String GetName(){
+
+    public String GetName() {
         return this.Name;
     }
+
     public void AddToStock(String productName, int Quantity, float Price) {
         if (employeeType) {
             productStocks.AddProduct(new Product(productName, Price, Quantity));
@@ -74,6 +76,8 @@ public class Employee {
     }
 
     public void PrintStock() {
-        productStocks.PrintStock();
+        if (employeeType) {
+            productStocks.PrintStock();
+        }
     }
 }

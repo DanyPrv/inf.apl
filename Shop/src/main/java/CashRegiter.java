@@ -25,11 +25,13 @@ public class CashRegiter {
         productList = new ArrayList<Product>();
         productQuantity = new ArrayList<Integer>();
     }
-    public void SetEmployeeName(String name){
-        this.sellerName=name;
+
+    public void SetEmployeeName(String name) {
+        this.sellerName = name;
     }
+
     public void AddProduct(Product product, int quantity) {
-        if(sellerName==null){
+        if (sellerName == null) {
             System.out.println("Specificati mai intai numele angajatului");
             return;
         }
@@ -38,12 +40,11 @@ public class CashRegiter {
     }
 
     public void CreateReceipt() {
-        if(sellerName==null){
+        if (sellerName == null) {
             System.out.println("Specificati mai intai numele angajatului");
             return;
         }
-        if(productList.isEmpty())
-        {
+        if (productList.isEmpty()) {
             System.out.println("Nu exista produs de tiparit pe bonul fiscal");
             return;
         }
@@ -51,8 +52,8 @@ public class CashRegiter {
         System.out.println("------------------------------------------------------------------------");
         System.out.println("Bon Fiscal:");
         System.out.println(shopName);
-        System.out.println("CUI: "+CUI);
-        System.out.println("Nume vanzator: "+sellerName);
+        System.out.println("CUI: " + CUI);
+        System.out.println("Nume vanzator: " + sellerName);
         System.out.println();
         System.out.println("Producse:");
         float total = 0;
@@ -61,10 +62,10 @@ public class CashRegiter {
             System.out.print(product.GetName() + "     ");
             System.out.print(productQuantity.get(i) + "     ");
             System.out.println(product.GetPrice() * productQuantity.get(i));
-            total+= product.GetPrice() * productQuantity.get(i);
+            total += product.GetPrice() * productQuantity.get(i);
         }
         System.out.println("----------------------");
-        System.out.println("Total:\t\t"+total);
+        System.out.println("Total:\t\t" + total);
         productList.clear();
         productQuantity.clear();
         System.out.println("------------------------------------------------------------------------");
