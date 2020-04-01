@@ -12,16 +12,18 @@ package com.mycompany.shop2;
 public class Administrator {
 
     private EmployeeInfo employeeInfo;
+    Stock stock;
 
-    public Administrator(EmployeeInfo employeeInfo) {
+    public Administrator(Stock stock, EmployeeInfo employeeInfo) {
+        this.stock = stock;
         this.employeeInfo = employeeInfo;
     }
 
-    public void AddProductToStock(Stock stock, Product product, int qty) throws Exception {
+    public void AddProductToStock(Product product, int qty) throws Exception {
         stock.Add(product, qty);
     }
 
-    public boolean CheckProductStock(Stock stock, String productName, int qty) throws Exception {
+    public boolean CheckProductStock(String productName, int qty) throws Exception {
         Product product = stock.GetProduct(productName);
         if (product != null) {
             return stock.GetQunaity(product.getName()) >= qty;
@@ -30,7 +32,7 @@ public class Administrator {
         return false;
     }
 
-    public void RemoveProductFromStock(Stock stock, String productName) throws Exception {
+    public void RemoveProductFromStock(String productName) throws Exception {
         Product product = stock.GetProduct(productName);
         if (product != null) {
             int qty = stock.GetQunaity(product.getName());

@@ -12,23 +12,25 @@ package com.mycompany.shop2;
 public class Seller {
 
     private EmployeeInfo employeeInfo;
+    Stock stock;
 
-    public Seller(EmployeeInfo employeeInfo) {
+    public Seller(Stock stock, EmployeeInfo employeeInfo) {
+        this.stock = stock;
         this.employeeInfo = employeeInfo;
     }
 
-    public boolean CheckProductStock(Stock stock, String productName, int qty) throws Exception {
+    public boolean CheckProductStock(String productName, int qty) throws Exception {
         return qty == stock.GetQunaity(productName);
     }
 
-    public Product GetProduct(Stock stock, String productName) {
+    public Product GetProduct(String productName) {
         return stock.GetProduct(productName);
     }
 
-    public void AddToSell(Stock stock, CashRegister cashRegister, String ProductName, int qty) throws Exception {
+    public void AddToSell(CashRegister cashRegister, String ProductName, int qty) throws Exception {
         Product product = stock.GetProduct(ProductName);
         if (product != null) {
-            if (this.CheckProductStock(stock, ProductName, qty)) {
+            if (this.CheckProductStock(ProductName, qty)) {
                 cashRegister.RegisterNewProduct(product, qty);
             }
         }

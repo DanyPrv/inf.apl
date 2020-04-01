@@ -34,10 +34,10 @@ public class Store {
     }
 
     public void AddNewSeller(String name, String phoneNo, String address) {
-        sellers.add(new Seller(new EmployeeInfo(name, phoneNo, address)));
+        sellers.add(new Seller(stock, new EmployeeInfo(name, phoneNo, address)));
     }
 
     public void AddNewAdmin(String name, String phoneNo, String address) {
-        admins.add(new Administrator(new EmployeeInfo(name, phoneNo, address)));
+        admins.add(new Administrator(stock, new EmployeeInfo(name, phoneNo, address)));
     }
 }
