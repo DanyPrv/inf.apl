@@ -16,9 +16,9 @@ public class Store {
     private String storeName;
     private String fiscalIdentifier;
     private Stock stock;
-    private List<CashRegister> cashRegisters;
-    private List<Administrator> admins;
-    private List<Seller> sellers;
+    public List<CashRegister> cashRegisters;
+    public List<Administrator> admins;
+    public List<Seller> sellers;
 
     public Store(String storeName, String fiscalIdentifier) {
         this.storeName = storeName;
