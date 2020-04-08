@@ -19,35 +19,45 @@ public class Stock {
         stockItems = new ArrayList<>();
     }
 
-    public void Add(Product product, int qty) throws Exception {
-        if (qty > 0) {
-            for (int i = 0; i < stockItems.size(); i++) {
+    public void Add(Product product, int qty) {
+        if (qty <= 0) {
+            return;
+        }
+        for (int i = 0; i < stockItems.size(); i++) {
 
-                if (stockItems.get(i).GetProduct().equals(product)) {
-                    stockItems.get(i).SetQuantity(
-                            qty + stockItems.get(i).GetQuantity());
-                    return;
-                }
+            if (stockItems.get(i).GetProduct().equals(product)) {
+                stockItems.get(i).SetQuantity(
+                        qty + stockItems.get(i).GetQuantity());
+                return;
             }
-            stockItems.add(new StockItem(product, qty));
-        } else {
-            throw new Exception("Netagive qunatity!");
+        }
+        stockItems.add(new StockItem(product, qty));
+    }
+
+    public void RemoveProduct(Product product, int qty) {
+        for (StockItem item : stockItems) {
+            if (item.GetProduct().equals(product)) {
+                stockItems.remove(item);
+            }
         }
     }
 
-    public void RemoveProduct(Product product, int qty) throws Exception {
-        if (!stockItems.remove(new StockItem(product, qty))) {
-            throw new Exception("Error removing product!");
+    public void SetQuantity(String productName, int qty) {
+        for (StockItem item : stockItems) {
+            if (item.GetProduct().getName().equals(productName)) {
+                item.SetQuantity(qty);
+                return;
+            }
         }
     }
 
-    public int GetQunaity(String productName) throws Exception {
+    public int GetQunaity(String productName) {
         for (StockItem item : stockItems) {
             if (item.GetProduct().getName().equals(productName)) {
                 return item.GetQuantity();
             }
         }
-        throw new Exception("No product foud with name: " + productName);
+        return 0;
     }
 
     public Product GetProduct(String productName) {
@@ -57,5 +67,9 @@ public class Stock {
             }
         }
         return null;
+    }
+
+    public List<StockItem> GetAllProducts() {
+        return this.stockItems;
     }
 }

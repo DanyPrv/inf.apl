@@ -19,25 +19,47 @@ public class Seller {
         this.employeeInfo = employeeInfo;
     }
 
-    public boolean CheckProductStock(String productName, int qty) throws Exception {
-        return qty == stock.GetQunaity(productName);
+    public EmployeeInfo GetEmployeeInfo() {
+        return this.employeeInfo;
+    }
+
+    public boolean CheckProductStock(String productName, int qty) {
+        return qty <= stock.GetQunaity(productName);
     }
 
     public Product GetProduct(String productName) {
         return stock.GetProduct(productName);
     }
 
-    public void AddToSell(CashRegister cashRegister, String ProductName, int qty) throws Exception {
+    public Stock GetStock() {
+        return this.stock;
+    }
+
+    public void AddToSell(CashRegister cashRegister, String ProductName, int qty) {
         Product product = stock.GetProduct(ProductName);
         if (product != null) {
             if (this.CheckProductStock(ProductName, qty)) {
                 cashRegister.RegisterNewProduct(product, qty);
+                stock.SetQuantity(ProductName, stock.GetQunaity(ProductName) - qty);
             }
         }
     }
 
-    public void Sell(CashRegister cashRegister) throws Exception {
+    public boolean RemoveFromSell(CashRegister cashRegister, String ProductName) {
+        int qty = cashRegister.RemoveProductFromSell(ProductName);
+        if (qty == -1) {
+            return false;
+        }
+        Product product = stock.GetProduct(ProductName);
+        stock.SetQuantity(ProductName, stock.GetQunaity(ProductName) + qty);
+        return true;
+    }
+
+    public void FinaliseSell(CashRegister cashRegister) {
         cashRegister.FinaliseSell();
+    }
+
+    public void StartNewSell(CashRegister cashRegister) {
         cashRegister.StartNewSell();
     }
 }

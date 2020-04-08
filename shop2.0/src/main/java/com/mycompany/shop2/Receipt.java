@@ -36,17 +36,28 @@ public class Receipt {
         }
     }
 
-    public void FinaliseSell() throws Exception {
+    public int GetItemQuantity(String productName) {
+        for (ReceiptItem item : receiptItems) {
+            if (item.GetProductName().equals(productName)) {
+                return item.GetQty();
+            }
+        }
+        return -1;
+    }
+
+    public void FinaliseSell() {
         if (!IsFinalised()) {
             receiptItems.forEach((item) -> {
                 total += item.GetTotal();
             });
-        } else {
-            throw new Exception("Receipt already finalised!");
         }
     }
 
     public boolean IsFinalised() {
         return total != 0;
+    }
+
+    public List<ReceiptItem> GetCurrentReceipt() {
+        return this.receiptItems;
     }
 }

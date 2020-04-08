@@ -17,12 +17,19 @@ public class CashRegister {
     private List<Receipt> receipts;
     private String storeName;
     private String fiscalIdentifier;
+    private String uniqueIdentifier;
 
-    public CashRegister(String storeName, String fiscalIdentifier) {
+    //identificator unic 
+    public CashRegister(String storeName, String fiscalIdentifier, String uniqueIdentifier) {
         currentRecpNo = -1;
         receipts = new ArrayList<>();
         this.storeName = storeName;
         this.fiscalIdentifier = fiscalIdentifier;
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+
+    public String GetUniqueIdentifier() {
+        return this.uniqueIdentifier;
     }
 
     public void StartNewSell() {
@@ -34,8 +41,20 @@ public class CashRegister {
         receipts.get(currentRecpNo).AddReceiptItem(product.getName(), product.getPrice(), qty);
     }
 
-    public void FinaliseSell() throws Exception {
-        receipts.get(currentRecpNo).FinaliseSell();
+    public int RemoveProductFromSell(String productName) {
+        int quantity = receipts.get(currentRecpNo).GetItemQuantity(productName);
+        receipts.get(currentRecpNo).RemoveReceiptItem(productName);
+        return quantity;
+    }
+
+    public Receipt FinaliseSell() {
+        Receipt item = receipts.get(currentRecpNo);
+        item.FinaliseSell();
+        return item;
+    }
+
+    public List<ReceiptItem> GetCurrentSell() {
+        return this.receipts.get(currentRecpNo).GetCurrentReceipt();
     }
 
 }

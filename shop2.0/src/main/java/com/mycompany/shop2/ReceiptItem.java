@@ -35,7 +35,7 @@ public class ReceiptItem {
         return this.ppUnit;
     }
 
-    public float GetQty() {
+    public int GetQty() {
         return this.qty;
     }
 

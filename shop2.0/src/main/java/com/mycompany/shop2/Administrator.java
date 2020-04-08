@@ -19,11 +19,15 @@ public class Administrator {
         this.employeeInfo = employeeInfo;
     }
 
-    public void AddProductToStock(Product product, int qty) throws Exception {
+    public EmployeeInfo GetEmployeeInfo() {
+        return this.employeeInfo;
+    }
+
+    public void AddProductToStock(Product product, int qty) {
         stock.Add(product, qty);
     }
 
-    public boolean CheckProductStock(String productName, int qty) throws Exception {
+    public boolean CheckProductStock(String productName, int qty) {
         Product product = stock.GetProduct(productName);
         if (product != null) {
             return stock.GetQunaity(product.getName()) >= qty;
@@ -32,7 +36,11 @@ public class Administrator {
         return false;
     }
 
-    public void RemoveProductFromStock(String productName) throws Exception {
+    public Stock GetStock() {
+        return this.stock;
+    }
+
+    public void RemoveProductFromStock(String productName) {
         Product product = stock.GetProduct(productName);
         if (product != null) {
             int qty = stock.GetQunaity(product.getName());

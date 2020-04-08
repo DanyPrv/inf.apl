@@ -16,9 +16,9 @@ public class Store {
     private String storeName;
     private String fiscalIdentifier;
     private Stock stock;
-    public List<CashRegister> cashRegisters;
-    public List<Administrator> admins;
-    public List<Seller> sellers;
+    private List<CashRegister> cashRegisters;
+    private List<Administrator> admins;
+    private List<Seller> sellers;
 
     public Store(String storeName, String fiscalIdentifier) {
         this.storeName = storeName;
@@ -29,15 +29,55 @@ public class Store {
         sellers = new ArrayList<>();
     }
 
-    public void AddNewCashRegister() {
-        cashRegisters.add(new CashRegister(storeName, fiscalIdentifier));
+    public CashRegister AddNewCashRegister(String uniqueIdentifier) {
+        CashRegister cashRegister = new CashRegister(storeName, fiscalIdentifier, uniqueIdentifier);
+        cashRegisters.add(cashRegister);
+        return cashRegister;
     }
 
-    public void AddNewSeller(String name, String phoneNo, String address) {
-        sellers.add(new Seller(stock, new EmployeeInfo(name, phoneNo, address)));
+    public Seller AddNewSeller(String name, String phoneNo, String address) {
+        Seller seller = new Seller(stock, new EmployeeInfo(name, phoneNo, address));
+        sellers.add(seller);
+        return seller;
     }
 
-    public void AddNewAdmin(String name, String phoneNo, String address) {
-        admins.add(new Administrator(stock, new EmployeeInfo(name, phoneNo, address)));
+    public Administrator AddNewAdmin(String name, String phoneNo, String address) {
+        Administrator admin = new Administrator(stock, new EmployeeInfo(name, phoneNo, address));
+        admins.add(admin);
+        return admin;
+    }
+
+    public CashRegister GetCashRegister(String uniqueIdentifier) {
+        for (CashRegister C : cashRegisters) {
+            if (C.GetUniqueIdentifier().equals(uniqueIdentifier)) {
+                return C;
+            }
+        }
+        return null;
+    }
+
+    public void RemoveCashRegister(String uniqueIdentifier) {
+        cashRegisters.remove(GetCashRegister(uniqueIdentifier));
+    }
+
+    public Seller GetSeller(String name, String phoneNo, String address) {
+        for (Seller C : sellers) {
+            if (C.GetEmployeeInfo().equals(new EmployeeInfo(name, phoneNo, address))) {
+                return C;
+            }
+        }
+        return null;
+    }
+
+    public Administrator GetAdmin(String name, String phoneNo, String address) {
+        for (Administrator C : admins) {
+            if (C.GetEmployeeInfo().equals(new EmployeeInfo(name, phoneNo, address))) {
+                return C;
+            }
+        }
+        return null;
+    }
+    public List<CashRegister>GetCashRegisters(){
+        return this.cashRegisters;
     }
 }
