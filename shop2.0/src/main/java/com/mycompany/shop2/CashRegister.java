@@ -33,7 +33,6 @@ public class CashRegister {
     }
 
     public void StartNewSell() {
-        currentRecpNo++;
         receipts.add(new Receipt());
     }
 
@@ -50,6 +49,7 @@ public class CashRegister {
     public Receipt FinaliseSell() {
         Receipt item = receipts.get(currentRecpNo);
         item.FinaliseSell();
+        currentRecpNo++;
         return item;
     }
 
