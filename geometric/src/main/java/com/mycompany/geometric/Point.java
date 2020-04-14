@@ -10,12 +10,15 @@ package com.mycompany.geometric;
  * @author Daniel
  */
 public class Point {
-    float x,y;
-    public Point(float x,float y){
-        this.x=x;
-        this.y=y;
+
+    float x, y;
+
+    public Point(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
-    public boolean Equal(Point obj){
-        return this.x==obj.x&&this.y==obj.y;
+
+    public boolean Equal(Point obj) {
+        return this.x == obj.x && this.y == obj.y;
     }
 }

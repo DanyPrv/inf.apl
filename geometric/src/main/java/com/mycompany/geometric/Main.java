@@ -20,15 +20,10 @@ public class Main {
     private static Scanner input;
 
     public static void main(String[] args) {
-        // TODO code application logic here
         board = new Board();
         input = new Scanner(System.in);
         Menu mainMenu = initializeMainMenu();
         mainMenu.execute();
-
-        //board.AddForm(new Circle(new Point(1, 2), 12));
-        //board.AddForm(new Square(new Point(1.2f,3), 4));
-        //board.PrintAllForms();
     }
 
     private static Menu initializeMainMenu() {

@@ -22,7 +22,7 @@ public class Circle implements Shape {
     @Override
     public void Print() {
         System.out.println("Cerc: ");
-        System.out.println("raza: " + radius + " centrul: " + O.x + ", " + O.y);
+        System.out.println("raza: " + radius + "\ncentrul: " + O.x + ", " + O.y);
         System.out.println();
     }
 
