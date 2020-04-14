@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.geometric;
 
 /**
@@ -11,6 +10,7 @@ package com.mycompany.geometric;
  * @author catalin
  */
 public class MenuItem implements IMenuItem {
+
     private final String text;
     private final int shortCut;
     private final IExecutableAction actionToExecute;
@@ -23,25 +23,21 @@ public class MenuItem implements IMenuItem {
     public IExecutableAction getActionToExecute() {
         return actionToExecute;
     }
-    
-    public MenuItem(String text, int shortCut, IExecutableAction actionToExecute)
-    {
+
+    public MenuItem(String text, int shortCut, IExecutableAction actionToExecute) {
         this.text = text;
         this.shortCut = shortCut;
         this.actionToExecute = actionToExecute;
     }
-    
+
     @Override
-    public void render()
-    {
-        System.out.println(""+ shortCut + ". " + text);
+    public void render() {
+        System.out.println("" + shortCut + ". " + text);
     }
-    
+
     @Override
-    public void execute()
-    {
-        if(actionToExecute != null)
-        {
+    public void execute() {
+        if (actionToExecute != null) {
             actionToExecute.execute(new Object[]{this});
         }
     }

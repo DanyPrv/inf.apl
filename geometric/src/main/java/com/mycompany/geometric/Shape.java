@@ -7,15 +7,11 @@ package com.mycompany.geometric;
 
 /**
  *
- * @author catalin
+ * @author Daniel
  */
-public interface IMenuItem {
+interface Shape {
 
-    String getText();
+    public void Print();
 
-    int getShortCut();
-
-    void render();
-
-    void execute();
+    public boolean Equal(Object obj);
 }

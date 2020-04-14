@@ -16,71 +16,111 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    private static Board board;
+    private static Scanner input;
+
     public static void main(String[] args) {
         // TODO code application logic here
+        board = new Board();
+        input = new Scanner(System.in);
         Menu mainMenu = initializeMainMenu();
         mainMenu.execute();
+
+        //board.AddForm(new Circle(new Point(1, 2), 12));
+        //board.AddForm(new Square(new Point(1.2f,3), 4));
+        //board.PrintAllForms();
     }
 
     private static Menu initializeMainMenu() {
         ArrayList<IMenuItem> mainMenuItems = new ArrayList();
-        ArrayList<IMenuItem> Screen2Items = new ArrayList();
+        ArrayList<IMenuItem> AddScreen = new ArrayList();
+        ArrayList<IMenuItem> EditScreen = new ArrayList();
 
-        Screen2Items.add(new MenuItem("Cerc",
+        AddScreen.add(new MenuItem("Cerc",
                 1,
                 (parameters) -> {
-                    encodeUsingBase64();
+                    System.out.println("Coordonatele centrului:");
+                    Point O = ReadPoint();
+                    System.out.print("Lungimea razei: ");
+                    float r = input.nextFloat();
+                    board.AddForm(new Circle(O, r));
                 }));
 
-        Screen2Items.add(new MenuItem("Patrat",
+        AddScreen.add(new MenuItem("Patrat",
                 2,
                 (parameters) -> {
-                    encodeUsingBase64();
+                    System.out.println("Coordonatele centrului:\n");
+                    Point O = ReadPoint();
+                    System.out.print("Lungimea laturii: ");
+                    float r = input.nextFloat();
+                    board.AddForm(new Square(O, r));
                 }));
 
-        mainMenuItems.add(new Menu("Adaugare", 1, Screen2Items));
+        mainMenuItems.add(new Menu("Adaugare", 1, AddScreen));
 
         mainMenuItems.add(new MenuItem("Stergere",
                 2,
                 (parameters) -> {
-                    encodeUsingCaesar();
+                    System.out.println("Coordontatele centrului:");
+                    Point O = ReadPoint();
+                    System.out.print("Lungimea razei/laturii: ");
+                    float length = input.nextFloat();
+                    if (!board.Remove(O, length)) {
+                        System.out.println("Forma geometrica inexistenta!");
+                    }
                 }));
 
-        mainMenuItems.add(new MenuItem("Modificare",
-                3,
+        EditScreen.add(new MenuItem("Cerc",
+                1,
                 (parameters) -> {
-                    encodeUsingCaesar();
+                    System.out.println("Coordontatele centrului:");
+                    Point O = ReadPoint();
+                    System.out.print("Lungimea razei: ");
+                    float length = input.nextFloat();
+                    if (!board.Remove(O, length)) {
+                        System.out.println("Forma geometrica inexistenta!");
+                        return;
+                    }
+                    System.out.println("Coordontatele noului centru:");
+                    O = ReadPoint();
+                    System.out.print("Lungimea razei: ");
+                    length = input.nextFloat();
+                    board.AddForm(new Circle(O, length));
                 }));
+
+        EditScreen.add(new MenuItem("Patrat",
+                2,
+                (parameters) -> {
+                    System.out.println("Coordontatele centrului:");
+                    Point O = ReadPoint();
+                    System.out.print("Lungimea laturii: ");
+                    float length = input.nextFloat();
+                    if (!board.Remove(O, length)) {
+                        System.out.println("Forma geometrica inexistenta!");
+                        return;
+                    }
+                    System.out.println("Coordontatele noului centru:");
+                    O = ReadPoint();
+                    System.out.print("Lungimea laturii: ");
+                    length = input.nextFloat();
+                    board.AddForm(new Square(O, length));
+                }));
+
+        mainMenuItems.add(new Menu("Modificare", 3, EditScreen));
 
         mainMenuItems.add(new MenuItem("Vizualizare plansa",
                 4,
                 (parameters) -> {
-                    encodeUsingCaesar();
+                    board.PrintAllForms();
                 }));
-
-        return new Menu("Main Menu", 0, mainMenuItems);
-
+        return new Menu("Meniu principal", 0, mainMenuItems);
     }
 
-    private static String readStringWithMessage(String message) {
-        System.out.print(message);
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
-    private static String readInputFile() {
-        return readStringWithMessage("Enter input file: ");
-    }
-
-    private static String readOutputFile() {
-        return readStringWithMessage("Enter output file: ");
-    }
-
-    private static void encodeUsingBase64() {
-        //encodeTextStream(new TextStreamEncoder(base64Encoder));
-    }
-
-    private static void encodeUsingCaesar() {
-        //encodeTextStream(new TextStreamEncoder(caesarEncoder));
+    private static Point ReadPoint() {
+        System.out.print("X: ");
+        float x = input.nextFloat();
+        System.out.print("Y: ");
+        float y = input.nextFloat();
+        return new Point(x, y);
     }
 }
