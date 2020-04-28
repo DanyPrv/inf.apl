@@ -13,5 +13,5 @@ interface Shape {
 
     public void Print();
 
-    public boolean Equal(Object obj);
+    public boolean Equal(Shape obj);
 }

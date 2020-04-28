@@ -27,7 +27,7 @@ public class Circle implements Shape {
     }
 
     @Override
-    public boolean Equal(Object obj) {
+    public boolean Equal(Shape obj) {
         if (!(obj instanceof Circle)) {
             return false;
         }

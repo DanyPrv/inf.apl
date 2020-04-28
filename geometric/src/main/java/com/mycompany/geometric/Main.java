@@ -56,11 +56,9 @@ public class Main {
         mainMenuItems.add(new MenuItem("Stergere",
                 2,
                 (parameters) -> {
-                    System.out.println("Coordontatele centrului:");
-                    Point O = ReadPoint();
-                    System.out.print("Lungimea razei/laturii: ");
-                    float length = input.nextFloat();
-                    if (!board.Remove(O, length)) {
+                    System.out.println("Indexul formei:");
+                    int index = input.nextInt();
+                    if (!board.Remove(index)) {
                         System.out.println("Forma geometrica inexistenta!");
                     }
                 }));
@@ -68,36 +66,34 @@ public class Main {
         EditScreen.add(new MenuItem("Cerc",
                 1,
                 (parameters) -> {
-                    System.out.println("Coordontatele centrului:");
-                    Point O = ReadPoint();
-                    System.out.print("Lungimea razei: ");
-                    float length = input.nextFloat();
-                    if (!board.Remove(O, length)) {
+                    System.out.println("Indexul fromei:");
+                   
+                    int index = input.nextInt();
+                    if (!board.Remove(index)) {
                         System.out.println("Forma geometrica inexistenta!");
                         return;
                     }
                     System.out.println("Coordontatele noului centru:");
-                    O = ReadPoint();
+                    Point O = ReadPoint();
                     System.out.print("Lungimea razei: ");
-                    length = input.nextFloat();
+                    float length = input.nextFloat();
                     board.AddForm(new Circle(O, length));
                 }));
 
         EditScreen.add(new MenuItem("Patrat",
                 2,
                 (parameters) -> {
-                    System.out.println("Coordontatele centrului:");
-                    Point O = ReadPoint();
-                    System.out.print("Lungimea laturii: ");
-                    float length = input.nextFloat();
-                    if (!board.Remove(O, length)) {
+                    System.out.println("Indexul fromei:");
+                    
+                    int index = input.nextInt();
+                    if (!board.Remove(index)) {
                         System.out.println("Forma geometrica inexistenta!");
                         return;
                     }
                     System.out.println("Coordontatele noului centru:");
-                    O = ReadPoint();
+                    Point O = ReadPoint();
                     System.out.print("Lungimea laturii: ");
-                    length = input.nextFloat();
+                    float length = input.nextFloat();
                     board.AddForm(new Square(O, length));
                 }));
 

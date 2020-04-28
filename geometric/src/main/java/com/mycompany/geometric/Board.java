@@ -13,44 +13,33 @@ import java.util.*;
  */
 public class Board {
 
-    List<Object> geometricForms;
-
+    List<Shape> geometricForms;
+    //shape
     Board() {
         geometricForms = new ArrayList<>();
     }
 
-    public void AddForm(Object geometricForm) {
+    public void AddForm(Shape geometricForm) {
         geometricForms.add(geometricForm);
     }
 
     public void PrintAllForms() {
         System.out.println("Obiecte:");
-        for (Object obj : geometricForms) {
-            if (obj instanceof Shape) {
-                ((Shape) obj).Print();
-            }
+        for (Shape obj : geometricForms) {
+            System.out.print(geometricForms.indexOf(obj)+": ");
+            obj.Print();
         }
     }
 
-    public boolean Remove(Point Center, float length) {
-        for (Object obj : geometricForms) {
-
-            if (obj instanceof Square) {
-                if (((Square) obj).Equal(new Square(Center, length))) {
-                    geometricForms.remove(obj);
-                    return true;
-                }
-            } else if (obj instanceof Circle) {
-                if (((Circle) obj).Equal(new Circle(Center, length))) {
-                    geometricForms.remove(obj);
-                    return true;
-                }
-            }
-        }
-        return false;
+    public boolean Remove(int index) {
+        //remove by index
+        if(geometricForms.size()>=index||index<0)
+            return false;
+        geometricForms.remove(index);
+        return true;
     }
 
-    public boolean ModifyObject(Object oldObject, Object newObject) {
+    public boolean ModifyObject(Shape oldObject, Shape newObject) {
         if (geometricForms.remove(oldObject)) {
             return geometricForms.add(newObject);
         }
