@@ -10,6 +10,8 @@ package com.ace.pluginsapplication.interfaces;
  * @author catalin
  */
 public interface IShape {
+
     void draw();
+
     void read();
 }

@@ -17,15 +17,17 @@ public class Circle implements IShape {
 
     Point.Float center;
     float radius;
-    public Circle(){
-        center=new Point.Float();
-        radius=0;
+
+    public Circle() {
+        center = new Point.Float();
+        radius = 0;
     }
+
     @Override
     public void draw() {
         System.out.println("Cerc:");
         System.out.println("Centrul:\nX:" + center.x + "\tY:" + center.y);
-        System.out.println("Lungimea razei: "+radius+"\n");
+        System.out.println("Lungimea razei: " + radius + "\n");
     }
 
     @Override

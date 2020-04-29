@@ -17,15 +17,17 @@ public class Square implements IShape {
 
     Point.Float center;
     float length;
-        public Square(){
-        center=new Point.Float();
-        length=0;
+
+    public Square() {
+        center = new Point.Float();
+        length = 0;
     }
+
     @Override
     public void draw() {
         System.out.println("Patrat:");
         System.out.println("Centrul:\nX:" + center.x + "\tY:" + center.y);
-        System.out.println("Lungimea laturii: "+length+"\n");
+        System.out.println("Lungimea laturii: " + length + "\n");
     }
 
     @Override

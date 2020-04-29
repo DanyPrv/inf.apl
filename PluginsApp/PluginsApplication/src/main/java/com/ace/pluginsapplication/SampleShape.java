@@ -23,5 +23,5 @@ public class SampleShape implements IShape {
     public void read() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

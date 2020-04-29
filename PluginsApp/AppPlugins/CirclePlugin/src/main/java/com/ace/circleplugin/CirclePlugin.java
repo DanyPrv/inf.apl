@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package com.ace.circleplugin;
+
 import com.ace.pluginsapplication.interfaces.IPluginsAppPlugin;
 import com.ace.pluginsapplication.interfaces.IShape;
+
 /**
  *
  * @author catalin
@@ -26,5 +28,5 @@ public class CirclePlugin implements IPluginsAppPlugin {
     public IShape getShape() {
         return new Circle();
     }
-    
+
 }
