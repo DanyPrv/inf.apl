@@ -1,0 +1,10 @@
+com\ace\pluginsapplication\PluginManager$1.class
+com\ace\pluginsapplication\ApplicationMenu.class
+com\ace\pluginsapplication\SampleShape.class
+com\ace\pluginsapplication\Menu.class
+com\ace\pluginsapplication\IMenuItem.class
+com\ace\pluginsapplication\MenuItem.class
+com\ace\pluginsapplication\PluginManager.class
+com\ace\pluginsapplication\Board.class
+com\ace\pluginsapplication\PluginApp.class
+com\ace\pluginsapplication\IExecutableAction.class
