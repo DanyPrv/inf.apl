@@ -33,6 +33,12 @@
                                     <fileset dir="${pom.basedir}/../AppPlugins/SquarePlugin/target" includes="*.jar">
                                         <include name="*.jar"/>
                                     </fileset>
+                                    <fileset dir="${pom.basedir}/../AppPlugins/RhombPlugin/target" includes="*.jar">
+                                        <include name="*.jar"/>
+                                    </fileset>
+                                    <fileset dir="${pom.basedir}/../AppPlugins/RectanglePlugin/target" includes="*.jar">
+                                        <include name="*.jar"/>
+                                    </fileset>
                                 </copy>
                             </tasks>
                         </configuration>                        
