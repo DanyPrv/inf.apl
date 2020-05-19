@@ -13,14 +13,15 @@ import java.util.*;
  *
  * @author catalin
  */
-public class Rectangle implements IShape {
+public class Rectangle extends Subject implements IShape {
 
     Point.Float center;
-    float length=0;
-    float width=0;
+    float length = 0;
+    float width = 0;
 
-    public Rectangle() {
+    public Rectangle(IObserver observer) {
         center = new Point.Float();
+        this.RegisterObserver(observer);
     }
 
     @Override
@@ -42,10 +43,19 @@ public class Rectangle implements IShape {
         this.length = in.nextFloat();
         System.out.print("Latime:");
         this.width = in.nextFloat();
-        if(this.length<this.width){
-            float t=this.width;
-            this.width=this.length;
-            this.length=t;
+        if (this.length < this.width) {
+            float t = this.width;
+            this.width = this.length;
+            this.length = t;
         }
+        NotifyObserver(RectangleInscription());
+    }
+
+    @Override
+    public List<Point.Float> RectangleInscription() {
+        List<Point.Float> list = new ArrayList<>();
+        list.add(new Point.Float(center.x - length / 2, center.y - width / 2));
+        list.add(new Point.Float(center.x + length / 2, center.y + width / 2));
+        return list;
     }
 }

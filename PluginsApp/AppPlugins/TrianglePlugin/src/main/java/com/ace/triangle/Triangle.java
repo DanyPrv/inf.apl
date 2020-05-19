@@ -13,16 +13,17 @@ import java.util.*;
  *
  * @author catalin
  */
-public class Triangle implements IShape {
+public class Triangle extends Subject implements IShape {
 
     Point.Float A;
     Point.Float B;
     Point.Float C;
 
-    public Triangle() {
+    public Triangle(IObserver observer) {
         A = new Point.Float();
         B = new Point.Float();
         C = new Point.Float();
+        this.RegisterObserver(observer);
     }
 
     @Override
@@ -36,22 +37,32 @@ public class Triangle implements IShape {
     @Override
     public void read() {
         Scanner in = new Scanner(System.in);
-        
+
         System.out.print("A:\nX:");
-        
+
         A.x = in.nextFloat();
         System.out.print("Y:");
         A.y = in.nextFloat();
-        
+
         System.out.print("B:\nX:");
         B.x = in.nextFloat();
         System.out.print("Y:");
         B.y = in.nextFloat();
-        
+
         System.out.print("C:\nX:");
         C.x = in.nextFloat();
         System.out.print("Y:");
         C.y = in.nextFloat();
+        NotifyObserver(RectangleInscription());
     }
 
+    @Override
+    public List<Point.Float> RectangleInscription() {
+        List<Point.Float> list = new ArrayList<>();
+        list.add(new Point.Float(Math.min(Math.min(A.x, B.x), C.x),
+                Math.min(Math.min(A.y, B.y), C.y)));
+        list.add(new Point.Float(Math.max(Math.max(A.x, B.x), C.x),
+                Math.max(Math.max(A.y, B.y), C.y)));
+        return list;
+    }
 }

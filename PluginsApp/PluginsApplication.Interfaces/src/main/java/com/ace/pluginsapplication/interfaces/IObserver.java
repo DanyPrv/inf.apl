@@ -5,15 +5,14 @@
  */
 package com.ace.pluginsapplication.interfaces;
 
+import java.awt.Point;
+import java.util.List;
+
 /**
  *
- * @author catalin
+ * @author Daniel
  */
-public interface IPluginsAppPlugin {
+public interface IObserver {
 
-    String getUniqueNameText();
-
-    String getDisplayText();
-
-    IShape getShape(IObserver observer);
+    public void Update(List<Point.Float> list);
 }

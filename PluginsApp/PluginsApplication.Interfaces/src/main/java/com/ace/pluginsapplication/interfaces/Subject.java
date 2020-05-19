@@ -10,13 +10,17 @@ import java.util.List;
 
 /**
  *
- * @author catalin
+ * @author Daniel
  */
-public interface IShape {
+public class Subject {
 
-    void draw();
+    IObserver observer;
 
-    void read();
+    public void RegisterObserver(IObserver observer) {
+        this.observer = observer;
+    }
 
-    List<Point.Float> RectangleInscription();
+    public void NotifyObserver(List<Point.Float> list) {
+        observer.Update(list);
+    }
 }

@@ -1,2 +1,4 @@
 com\ace\pluginsapplication\interfaces\IShape.class
+com\ace\pluginsapplication\interfaces\Subject.class
+com\ace\pluginsapplication\interfaces\IObserver.class
 com\ace\pluginsapplication\interfaces\IPluginsAppPlugin.class

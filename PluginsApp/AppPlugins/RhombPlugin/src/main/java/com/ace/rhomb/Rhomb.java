@@ -13,22 +13,21 @@ import java.util.*;
  *
  * @author catalin
  */
-public class Rhomb implements IShape {
+public class Rhomb extends Subject implements IShape {
 
     Point.Float center;
-    float length=0;
-    float longDiagonal=0;
-    float shortDiagonal=0;
+    float longDiagonal = 0;
+    float shortDiagonal = 0;
 
-    public Rhomb() {
+    public Rhomb(IObserver observer) {
         center = new Point.Float();
+        this.RegisterObserver(observer);
     }
 
     @Override
     public void draw() {
         System.out.println("Romb:");
         System.out.println("Centrul:\nX:" + center.x + "\tY:" + center.y);
-        System.out.println("Lungimea laturii: " + length + "\n");
         System.out.println("Lungimea diagonalei principale: " + longDiagonal);
         System.out.println("Lungimea diagonalei secundare: " + shortDiagonal);
     }
@@ -40,12 +39,18 @@ public class Rhomb implements IShape {
         center.x = in.nextFloat();
         System.out.print("Y:");
         center.y = in.nextFloat();
-        System.out.print("Lungimea laturii:");
-        this.length = in.nextFloat();
         System.out.print("Lungimea diagonalei principale:");
         this.longDiagonal = in.nextFloat();
         System.out.print("Lungimea diagonalei secundare:");
         this.shortDiagonal = in.nextFloat();
+        NotifyObserver(RectangleInscription());
     }
 
+    @Override
+    public List<Point.Float> RectangleInscription() {
+        List<Point.Float> list = new ArrayList<>();
+        list.add(new Point.Float(center.x - longDiagonal / 2, center.y - shortDiagonal / 2));
+        list.add(new Point.Float(center.x + longDiagonal / 2, center.y + shortDiagonal / 2));
+        return list;
+    }
 }

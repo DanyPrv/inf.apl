@@ -5,22 +5,26 @@
  */
 package com.ace.circleplugin;
 
-import com.ace.pluginsapplication.interfaces.IShape;
+import com.ace.pluginsapplication.interfaces.*;
+
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  *
  * @author catalin
  */
-public class Circle implements IShape {
+public class Circle extends Subject implements IShape {
 
     Point.Float center;
     float radius;
 
-    public Circle() {
+    public Circle(IObserver observer) {
         center = new Point.Float();
         radius = 0;
+        this.RegisterObserver(observer);
     }
 
     @Override
@@ -39,7 +43,16 @@ public class Circle implements IShape {
         center.y = in.nextFloat();
         System.out.print("Lungimea razei:");
         this.radius = in.nextFloat();
+        NotifyObserver(RectangleInscription());
 
+    }
+
+    @Override
+    public List<Point.Float> RectangleInscription() {
+        List<Point.Float> list = new ArrayList<>();
+        list.add(new Point.Float(center.x - radius / 2, center.y - radius / 2));
+        list.add(new Point.Float(center.x + radius / 2, center.y + radius / 2));
+        return list;
     }
 
 }

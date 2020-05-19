@@ -37,7 +37,7 @@ public class ApplicationMenu {
         for (int i = 0; i < plugins.size(); i++) {
             var currentPlugin = plugins.get(i);
             MenuItem currentItem = new MenuItem(plugins.get(i).getDisplayText(), shortCut++, (parameters) -> {
-                IShape shape = currentPlugin.getShape();
+                IShape shape = currentPlugin.getShape(board);
                 shape.read();
                 board.AddShape(shape);
             });
@@ -72,7 +72,7 @@ public class ApplicationMenu {
                             System.out.println("Forma geometrica inexistenta!");
                             return;
                         }
-                        IShape shape = currentPlugin.getShape();
+                        IShape shape = currentPlugin.getShape(board);
                         shape.read();
                         board.AddShape(shape);
                     });

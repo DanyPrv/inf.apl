@@ -5,8 +5,7 @@
  */
 package com.ace.triangle;
 
-import com.ace.pluginsapplication.interfaces.IPluginsAppPlugin;
-import com.ace.pluginsapplication.interfaces.IShape;
+import com.ace.pluginsapplication.interfaces.*;
 
 /**
  *
@@ -25,8 +24,8 @@ public class TrianglePlugin implements IPluginsAppPlugin {
     }
 
     @Override
-    public IShape getShape() {
-        return new Triangle();
+    public IShape getShape(IObserver observer) {
+        return new Triangle(observer);
     }
 
 }

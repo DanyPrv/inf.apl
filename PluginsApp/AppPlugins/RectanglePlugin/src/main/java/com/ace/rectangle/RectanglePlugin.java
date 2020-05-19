@@ -5,9 +5,7 @@
  */
 package com.ace.rectangle;
 
-import com.ace.pluginsapplication.interfaces.IPluginsAppPlugin;
-import com.ace.pluginsapplication.interfaces.IShape;
-
+import com.ace.pluginsapplication.interfaces.*;
 /**
  *
  * @author catalin
@@ -25,8 +23,8 @@ public class RectanglePlugin implements IPluginsAppPlugin {
     }
 
     @Override
-    public IShape getShape() {
-        return new Rectangle();
+    public IShape getShape(IObserver observer) {
+        return new Rectangle(observer);
     }
 
 }
